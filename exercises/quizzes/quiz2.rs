@@ -28,13 +28,10 @@ mod my_module {
 
     // TODO: Complete the function as described above.
     pub fn transformer(input: Vec<(String, Command)>) -> Vec<String> {
-        let mut output: Vec<String> = Vec::new();
-        for i in input {
-            let out = run_command(i.0, i.1);
-            output.push(out);
-        }
-
-        output
+        input
+            .into_iter()
+            .map(|(s, command)| run_command(s, command))
+            .collect()
     }
 
     fn run_command(mut input: String, command: Command) -> String {
